@@ -12,9 +12,9 @@ public class Train extends Transport{
     private int numberWagons;//Количество вагонов
 
     public Train(String brand, String model, String productionCountry, int productionYear, Key key,
-                 Insurance insurance, double tripPrice, int speed, String departureStation,
+                 Insurance insurance, String gasType, double tripPrice, int speed, String departureStation,
                  String endStation, int numberWagons) {
-        super(brand, model, productionCountry, productionYear, key, insurance);
+        super(brand, model, productionCountry, productionYear, key, insurance, gasType);
         this.tripPrice = tripPrice;
         this.speed = speed;
         this.departureStation = departureStation;
@@ -25,8 +25,16 @@ public class Train extends Transport{
     public String toString() {
         return "Поезд: " +getBrand() + ". Модель: " + getModel() + ". Год выпуска: " + getProductionYear() +
                 ". Страна выпуска: " + getProductionCountry() + ". Скорость: " + speed + " км/ч. Количество вагонов: "
-                + numberWagons + ". \nОтходит от станции: " + departureStation+ ". Следует до станции: " + endStation +
+                + numberWagons + ". \nТопливо: " + getGasType() + ". Отходит от станции: " + departureStation+ ". Следует до станции: " + endStation +
                 ". Стоимость билета: " + tripPrice + " рублей. \n" + getKey() + ". \n" + getInsurance() + " рублей.";
+    }
+
+    @Override
+    public void refill() {
+        if (getGasType() == this.getGasType()) {
+            //this.setGasType("Дизель");
+            System.out.println("Топливо для заправки: " + this.getBrand() + " " + this.getModel() + " - " + this.getGasType() + ".");
+        }
     }
     public static void printAllTrain(Train[] train) {
         for (Train train1 : train) {

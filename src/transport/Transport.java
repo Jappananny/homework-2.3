@@ -4,16 +4,17 @@ import lombok.Setter;
 import static java.lang.Character.isDigit;
 @Getter
 @Setter
-public class Transport {
+public abstract class Transport {
     private final String brand;
     private final String model;
     private final String productionCountry;
     private final int productionYear;
     private Car.Key key;
     private Car.Insurance insurance;
+    private String gasType;
 
     public Transport(String brand, String model, String productionCountry, int productionYear,
-                     Key key, Insurance insurance) {
+                     Key key, Insurance insurance, String gasType) {
         if (brand.length() <= 0 || brand == null){
             this.brand = "default";
         } else {
@@ -36,6 +37,7 @@ public class Transport {
         }
         this.key = key;
         this.insurance = insurance;
+        this.gasType = gasType;
     }
 
 
@@ -99,11 +101,11 @@ public class Transport {
         }
         this.numberInsurance = correctNumberInsurance ? numberInsurance : "Некоректный номер страховки";
     }
-
     @Override
     public String toString() {
         return "Номер страховки : " + numberInsurance + ". Срок действия страховки до : " + validity +
                 ". Стоимость страховки : " + costInsurance;
     }
     }
+    public abstract void refill();
 }

@@ -15,8 +15,8 @@ public class Car extends Transport{
 
     public Car(String brand, String model, int productionYear, String productionCountry, String color,
                double engineVolume, boolean transmission, String bodyType, String regNumber, int seats,
-               boolean typeTyre, Key key, Insurance insurance){
-        super(brand, model, productionCountry, productionYear, key, insurance);
+               boolean typeTyre, Key key, Insurance insurance, String gasType){
+        super(brand, model, productionCountry, productionYear, key, insurance, gasType);
         boolean regNumberCorrect = false;
         if (color.length() <= 0 || color == null){
             this.color = "белый";
@@ -92,11 +92,17 @@ public class Car extends Transport{
     public String toString() {
         return "Бренд: " + getBrand() + " Модель: " + getModel() + ". Год выпуска: " + getProductionYear() +
                 ". Сборка: " + getProductionCountry() + ". Цвет " + color + ". Объем двигателя - "
-                + engineVolume + " литра. " + "\nТип коробки передач: " + transmission + ". Тип кузова: "
+                + engineVolume + " литра. " + "\nТопливо: " + getGasType() + ". Тип коробки передач: " + transmission + ". Тип кузова: "
                 + bodyType + ". Регистрационный номер автомобиля: " + regNumber + ".\nКоличество мест: "
                 + seats + ". На автомобиле установленна " + typeTyre + " резина. " + getKey() + ". \n"
                 + getInsurance() + " рублей.";
     }
+
+    @Override
+    public void refill() {
+
+    }
+
     public static void printAllCar(Car[] car) {
         for (Car car1 : car) {
             if (car1 != null) {
