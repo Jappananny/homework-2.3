@@ -1,5 +1,8 @@
 package transport;
 import lombok.Getter;
+
+import java.util.Objects;
+
 import static java.lang.Character.isDigit;
 @Getter
 public class Car extends Transport{
@@ -101,6 +104,19 @@ public class Car extends Transport{
     @Override
     public void refill() {
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Double.compare(car.engineVolume, engineVolume) == 0 && seats == car.seats && color.equals(car.color) && transmission.equals(car.transmission) && bodyType.equals(car.bodyType) && typeTyre.equals(car.typeTyre) && regNumber.equals(car.regNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, engineVolume, transmission, bodyType, typeTyre, regNumber, seats);
     }
 
     public static void printAllCar(Car[] car) {

@@ -1,6 +1,8 @@
 package AnimalProg;
 import lombok.Getter;
 
+import java.util.Objects;
+
 @Getter
 public class Mammals extends Animal{
     private int moveSpeed;//Скорость передвижения
@@ -28,6 +30,21 @@ public class Mammals extends Animal{
     public void sleep() {
         System.out.println("Спит!");
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Mammals mammals = (Mammals) o;
+        return moveSpeed == mammals.moveSpeed;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), moveSpeed);
+    }
+
     @Override
     public String toString() {
         return "Млекопитающие: " + getName() +

@@ -1,6 +1,9 @@
 package transport;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Objects;
+
 import static java.lang.Character.isDigit;
 @Getter
 @Setter
@@ -101,7 +104,21 @@ public abstract class Transport {
         }
         this.numberInsurance = correctNumberInsurance ? numberInsurance : "Некоректный номер страховки";
     }
-    @Override
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Insurance insurance = (Insurance) o;
+            return validity == insurance.validity && Double.compare(insurance.costInsurance, costInsurance) == 0 && Objects.equals(numberInsurance, insurance.numberInsurance);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(validity, costInsurance, numberInsurance);
+        }
+
+        @Override
     public String toString() {
         return "Номер страховки : " + numberInsurance + ". Срок действия страховки до : " + validity +
                 ". Стоимость страховки : " + costInsurance;

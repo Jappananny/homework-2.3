@@ -21,6 +21,17 @@ public class Amphibians extends Animal{
     public void sleep() {
         System.out.println("Спит!");
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
     @Override
     public String toString() {
         return "Земноводное: " + getName() +

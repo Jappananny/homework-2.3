@@ -2,6 +2,8 @@ package transport;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 public class Train extends Transport{
@@ -36,6 +38,20 @@ public class Train extends Transport{
             System.out.println("Топливо для заправки: " + this.getBrand() + " " + this.getModel() + " - " + this.getGasType() + ".");
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Train train = (Train) o;
+        return Double.compare(train.tripPrice, tripPrice) == 0 && speed == train.speed && numberWagons == train.numberWagons && departureStation.equals(train.departureStation) && endStation.equals(train.endStation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tripPrice, speed, departureStation, endStation, numberWagons);
+    }
+
     public static void printAllTrain(Train[] train) {
         for (Train train1 : train) {
             if (train1 != null) {

@@ -2,6 +2,8 @@ package transport;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 public class Bus extends Transport{
@@ -21,6 +23,19 @@ public class Bus extends Transport{
     @Override
     public void refill() {
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bus bus = (Bus) o;
+        return busRouteNumber == bus.busRouteNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(busRouteNumber);
     }
 
     public static void printAllBus(Bus[] bus) {
