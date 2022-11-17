@@ -43,7 +43,69 @@ public abstract class Transport {
         this.gasType = gasType;
     }
 
+    public static class Insurance {
+        private int validity;
+        private double costInsurance;
+        private String numberInsurance;
 
+        public Insurance(int validity, double costInsurance, String numberInsurance) {
+
+            if (validity < java.time.LocalDate.now().getYear()) {
+                this.validity = (Math.max(validity, 2000));
+            } else {
+                this.validity = validity;
+            }
+            if (costInsurance < 0) {
+                this.costInsurance = 0;
+            } else {
+                this.costInsurance = costInsurance;
+            }
+            boolean correctNumberInsurance = false;
+            if (numberInsurance.length() == 9 && numberInsurance != null) {
+                for (int i = 0; i < numberInsurance.length(); i++) {
+                    switch (i) {
+                        case 0:
+                            correctNumberInsurance = !isDigit(numberInsurance.toCharArray()[i]);
+                        case 1:
+                            break;
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
+                        case 7:
+                        case 8:
+                            correctNumberInsurance = isDigit(numberInsurance.toCharArray()[i]);
+                            break;
+                    }
+                    if (!correctNumberInsurance) {
+                        break;
+                    }
+                }
+            }
+            this.numberInsurance = correctNumberInsurance ? numberInsurance : "Некоректный номер страховки";
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Insurance insurance = (Insurance) o;
+            return validity == insurance.validity && Double.compare(insurance.costInsurance, costInsurance) == 0 && Objects.equals(numberInsurance, insurance.numberInsurance);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(validity, costInsurance, numberInsurance);
+        }
+
+        @Override
+        public String toString() {
+            return "Номер страховки : " + numberInsurance + ". Срок действия страховки до : " + validity +
+                    ". Стоимость страховки : " + costInsurance;
+        }
+    }
+    public abstract void refill();
     @Override
     public String toString() {
         return super.toString();
@@ -62,67 +124,5 @@ public abstract class Transport {
         return "Транспорт с : " + remoteStart + " и " + keylessAccess;
     }
     }
-    public static class Insurance {
-    private int validity;
-    private double costInsurance;
-    private String numberInsurance;
 
-    public Insurance(int validity, double costInsurance, String numberInsurance) {
-
-        if (validity < java.time.LocalDate.now().getYear()) {
-            this.validity = (Math.max(validity, 2000));
-        } else {
-            this.validity = validity;
-        }
-        if (costInsurance < 0) {
-            this.costInsurance = 0;
-        } else {
-            this.costInsurance = costInsurance;
-        }
-        boolean correctNumberInsurance = false;
-        if (numberInsurance.length() == 9 && numberInsurance != null) {
-            for (int i = 0; i < numberInsurance.length(); i++) {
-                switch (i) {
-                    case 0:
-                        correctNumberInsurance = !isDigit(numberInsurance.toCharArray()[i]);
-                    case 1:
-                        break;
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 8:
-                        correctNumberInsurance = isDigit(numberInsurance.toCharArray()[i]);
-                        break;
-                }
-                if (!correctNumberInsurance) {
-                    break;
-                }
-            }
-        }
-        this.numberInsurance = correctNumberInsurance ? numberInsurance : "Некоректный номер страховки";
-    }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Insurance insurance = (Insurance) o;
-            return validity == insurance.validity && Double.compare(insurance.costInsurance, costInsurance) == 0 && Objects.equals(numberInsurance, insurance.numberInsurance);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(validity, costInsurance, numberInsurance);
-        }
-
-        @Override
-    public String toString() {
-        return "Номер страховки : " + numberInsurance + ". Срок действия страховки до : " + validity +
-                ". Стоимость страховки : " + costInsurance;
-    }
-    }
-    public abstract void refill();
 }

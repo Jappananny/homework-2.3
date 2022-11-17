@@ -1,6 +1,5 @@
 package AnimalProg;
 
-import java.util.Objects;
 
 public class Fly  extends Bird{
     String typeMovement;
@@ -19,20 +18,6 @@ public class Fly  extends Bird{
     @Override
     public void walk() {
         System.out.println("Летает!");
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Fly fly = (Fly) o;
-        return Objects.equals(typeMovement, fly.typeMovement);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), typeMovement);
     }
 
     @Override

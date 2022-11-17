@@ -33,15 +33,6 @@ public abstract class Animal {
     public abstract void sleep();
 
     @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -50,5 +41,14 @@ public abstract class Animal {
 
         return name.equals(animal.name);
     }
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
 }
 

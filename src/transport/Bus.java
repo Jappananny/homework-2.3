@@ -19,7 +19,13 @@ public class Bus extends Transport{
                 ". Сборка: " + getProductionCountry() + ". Топливо: " + getGasType() + ". Номер автобуса: " +
                 busRouteNumber+ ". \n" + getKey() + ". \n" + getInsurance() + " рублей.";
     }
-
+    public static void printAllBus(Bus[] bus) {
+        for (Bus bus1 : bus) {
+            if (bus1 != null) {
+                System.out.println(bus1.toString());
+            }
+        }
+    }
     @Override
     public void refill() {
 
@@ -38,11 +44,5 @@ public class Bus extends Transport{
         return Objects.hash(busRouteNumber);
     }
 
-    public static void printAllBus(Bus[] bus) {
-        for (Bus bus1 : bus) {
-            if (bus1 != null) {
-                System.out.println(bus1.toString());
-            }
-        }
-    }
+
 }

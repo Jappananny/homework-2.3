@@ -100,10 +100,15 @@ public class Car extends Transport{
                 + seats + ". На автомобиле установленна " + typeTyre + " резина. " + getKey() + ". \n"
                 + getInsurance() + " рублей.";
     }
-
+    public static void printAllCar(Car[] car) {
+        for (Car car1 : car) {
+            if (car1 != null) {
+                System.out.println(car1.toString());
+            }
+        }
+    }
     @Override
     public void refill() {
-
     }
 
     @Override
@@ -119,13 +124,7 @@ public class Car extends Transport{
         return Objects.hash(color, engineVolume, transmission, bodyType, typeTyre, regNumber, seats);
     }
 
-    public static void printAllCar(Car[] car) {
-        for (Car car1 : car) {
-            if (car1 != null) {
-                System.out.println(car1.toString());
-            }
-        }
-    }
+
 
 
 }

@@ -30,6 +30,13 @@ public class Train extends Transport{
                 + numberWagons + ". \nТопливо: " + getGasType() + ". Отходит от станции: " + departureStation+ ". Следует до станции: " + endStation +
                 ". Стоимость билета: " + tripPrice + " рублей. \n" + getKey() + ". \n" + getInsurance() + " рублей.";
     }
+    public static void printAllTrain(Train[] train) {
+        for (Train train1 : train) {
+            if (train1 != null) {
+                System.out.println(train1.toString());
+            }
+        }
+    }
 
     @Override
     public void refill() {
@@ -52,12 +59,5 @@ public class Train extends Transport{
         return Objects.hash(tripPrice, speed, departureStation, endStation, numberWagons);
     }
 
-    public static void printAllTrain(Train[] train) {
-        for (Train train1 : train) {
-            if (train1 != null) {
-                System.out.println(train1.toString());
-            }
-        }
-    }
 
 }
